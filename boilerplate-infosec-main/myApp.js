@@ -52,12 +52,13 @@ module.exports = app;
 const api = require('./server.js');
 app.use(express.static('public'));
 app.disable('strict-transport-security');
-app.use('/_api', api);
+app.use(helmet());
 app.get("/", function (request, response) {
   response.sendFile(__dirname + '/views/index.html');
 });
 let port = process.env.PORT || 3000;
 
-app.listen(PORT, () => {
+app.listen(port, () => {
   console.log(`💡 Ming's Info Security App Started on port ${port}`);
 });
+
